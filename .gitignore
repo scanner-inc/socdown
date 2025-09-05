@@ -1,0 +1,94 @@
+# SOC Investigation Files - Git Ignore
+
+# Temporary investigation files
+*.tmp
+*.temp
+*~
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# System files
+.DS_Store
+Thumbs.db
+*.log
+
+# Sensitive investigation data (if any)
+# Uncomment these if investigations contain sensitive data
+# investigations/*/
+# *.key
+# *.pem
+# *.p12
+# credentials.*
+# secrets.*
+
+# Archive files (investigations older than 30 days)
+investigations.tar.gz
+*.tar.gz
+*.zip
+
+# Scanner query cache/temp files
+.scanner-cache/
+query-results/
+*.cache
+
+# Investigation working directories
+scratch/
+temp-analysis/
+working/
+
+# Personal notes that shouldn't be shared
+personal-notes.md
+private-notes/
+*-private.md
+
+# Screenshots and images (often large)
+screenshots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+
+# Data exports and CSV files from investigations
+*.csv
+*.json
+*.xml
+exports/
+data-dumps/
+
+# Backup files
+*.bak
+*.backup
+*-backup.*
+
+# Jupyter notebooks checkpoints (if using notebooks for analysis)
+.ipynb_checkpoints/
+
+# Python cache (if using Python scripts for analysis)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Node modules (if using any JS tools)
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE specific
+*.sublime-project
+*.sublime-workspace
+
+# Documentation generation artifacts
+docs/_build/
+site/
