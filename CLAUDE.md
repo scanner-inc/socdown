@@ -38,15 +38,42 @@ When the user says **"Let's investigate alert \<id\>"**, immediately:
 6. **Provide clear assessments** with high confidence levels backed by multiple evidence sources
 7. **Learn from past investigations** to improve future analysis and build institutional knowledge
 
+## 🧠 High-Probability Hypothesis Framework
+
+**Core Methodology**: Generate evidence-driven hypotheses ranked by probability, then systematically test them to converge on the truth efficiently.
+
+### 🎯 **Hypothesis-Driven Investigation Process**
+
+1. **Generate High-Probability Hypotheses**: Use initial evidence to propose explanations that are most likely to be true, based on:
+   - Alert patterns and context
+   - Threat intelligence and known attack patterns  
+   - Historical data from past investigations
+   - Entity context and risk profiles
+
+2. **Prioritize Testing for True Positives**: Focus investigation effort on collecting evidence that confirms or refutes these high-probability hypotheses efficiently:
+   - Target data collection based on hypothesis predictions
+   - Reduce time spent on unlikely scenarios
+   - Maintain bias toward treating alerts as genuine threats
+
+3. **Minimize False Positives/Negatives**: Balance investigation efficiency with thoroughness:
+   - Avoid overemphasizing hypotheses that seem plausible but lack supporting evidence
+   - Don't miss critical hypotheses due to tunnel vision or confirmation bias
+   - Validate findings across multiple independent data sources
+
+4. **Iterate with Feedback**: Continuously refine hypotheses based on new evidence:
+   - Adjust confidence levels as evidence accumulates
+   - Generate new hypotheses when evidence contradicts existing ones
+   - Converge on truth through systematic hypothesis testing
+
 ### 🔬 Investigation Philosophy
 
-**Exhaustive Analysis Approach**:
-- **Assume nothing** - verify all claims and assumptions with evidence
-- **Question everything** - challenge initial assessments and dig deeper
-- **Follow every lead** - pursue all investigative threads until resolution
+**Evidence-Driven Analysis Approach**:
+- **Generate multiple hypotheses** - create 2-4 most probable explanations based on initial evidence
+- **Rank by likelihood and impact** - prioritize investigation effort on high-probability scenarios
+- **Test systematically** - collect targeted evidence to confirm or refute each hypothesis
 - **Think adversarially** - consider what an attacker would do at each step
 - **Correlate extensively** - connect seemingly unrelated events across time and systems
-- **Validate thoroughly** - cross-reference findings across multiple data sources
+- **Iterate and refine** - continuously update hypotheses and confidence levels based on new evidence
 
 ## 📁 File Organization
 
@@ -93,16 +120,20 @@ The script automatically ensures uniqueness across all investigation files.
 
 ## 🔍 Investigation Process
 
-### 🚀 Phase 1: Comprehensive Initial Assessment
+### 🚀 Phase 1: Hypothesis Generation & Initial Assessment
 - **Review alert details and metadata** - examine every field and timestamp
 - **Research entity context** - search past investigations for all mentioned entities
-- **Assess baseline risk** - apply known trust/risk levels from historical data  
-- **Identify investigation scope** - determine breadth of analysis required
-- **Document working hypotheses** - create multiple scenarios to test
-- **Plan correlation strategy** - identify related data sources to query
+- **Assess baseline risk** - apply known trust/risk levels from historical data
+- **Generate high-probability hypotheses** - create 2-4 most likely explanations based on:
+  - Alert patterns and technical indicators
+  - Threat intelligence and known attack methods
+  - Historical context from similar investigations
+  - Entity risk profiles and past behavior
+- **Rank hypotheses by probability and impact** - prioritize investigation focus
+- **Plan targeted evidence collection** - identify specific data needed to test each hypothesis
 
-### 🕵️ Phase 2: Multi-Source Evidence Collection
-**Use MCP tools systematically and exhaustively**:
+### 🕵️ Phase 2: Hypothesis-Targeted Evidence Collection
+**Use MCP tools strategically based on hypothesis testing requirements**:
 
 #### Core Data Sources
 - **Scanner queries** for comprehensive log analysis across all relevant timeframes
@@ -128,25 +159,25 @@ Expand investigation when you discover:
 - **Lateral movement indicators** or network reconnaissance
 - **Command and control** communications or beaconing
 
-### 🎯 Phase 3: Deep Analysis & Multi-Angle Assessment
-- **Attack chain reconstruction** - map complete kill chain if malicious
-- **Impact assessment** - determine scope of compromise or attempted compromise
-- **Confidence validation** - cross-reference findings across multiple sources
-- **Alternative scenario testing** - challenge primary hypothesis with contradictory evidence
-- **Gap identification** - document what evidence is missing or inconclusive
-- **MITRE ATT&CK mapping** - categorize all tactics and techniques observed
-- **Threat actor profiling** - assess sophistication, goals, and attribution indicators
+### 🎯 Phase 3: Hypothesis Testing & Refinement
+- **Test each hypothesis systematically** - evaluate evidence supporting/refuting each explanation
+- **Update confidence levels** - adjust probability rankings based on accumulated evidence
+- **Generate new hypotheses** - create additional explanations when evidence contradicts existing ones
+- **Cross-reference findings** - validate conclusions across multiple independent data sources
+- **Gap identification** - document missing evidence and investigative limitations
+- **Convergence assessment** - determine if sufficient evidence exists for confident conclusion
+- **Alternative scenario validation** - ensure no critical explanations were missed
 
-### 📊 Phase 4: Correlation & Pattern Analysis
-- **Historical pattern matching** - compare to past investigations and known campaigns
-- **Anomaly detection** - identify deviations from established baselines
-- **Clustering analysis** - group related events and indicators
-- **Timeline reconstruction** - create detailed chronology of all related events
-- **Infrastructure analysis** - map attacker infrastructure and tool usage
-- **Victim profiling** - understand target selection and attack motivation
+### 📊 Phase 4: Final Analysis & Classification
+- **Attack chain reconstruction** - map complete kill chain for confirmed malicious activity
+- **Impact assessment** - determine scope of compromise or attempted compromise
+- **MITRE ATT&CK mapping** - categorize confirmed tactics and techniques
+- **Threat actor profiling** - assess sophistication, goals, and attribution indicators
+- **Timeline reconstruction** - create detailed chronology of confirmed events
+- **Pattern correlation** - compare to past investigations and known campaigns
 
 ### 📋 Phase 5: Comprehensive Documentation
-Create investigation file with complete evidence chains and reproducible analysis
+Create investigation file with complete evidence chains, hypothesis testing results, and reproducible analysis
 
 ## 📋 Investigation Template Structure
 
@@ -172,9 +203,21 @@ Create investigation file with complete evidence chains and reproducible analysi
 - **Key Finding**: <One sentence summary>
 - **Immediate Actions Required**: <Checkbox list>
 
+## Hypothesis Analysis
+### Initial Hypotheses (Ranked by Probability)
+1. **[HIGH]** Hypothesis 1: Description and supporting indicators
+2. **[MEDIUM]** Hypothesis 2: Description and supporting indicators  
+3. **[LOW]** Hypothesis 3: Description and supporting indicators
+
+### Final Assessment
+- **Confirmed Hypothesis**: Which explanation proved correct
+- **Confidence Level**: Percentage based on evidence strength
+- **Evidence Quality**: Multiple sources / Limited sources / Single source
+- **Alternative Scenarios Tested**: List of hypotheses ruled out
+
 ## Timeline
-| Time | Event | Source |
-|------|-------|--------|
+| Time | Event | Source | Hypothesis Support |
+|------|-------|--------|--------------------|
 
 ## Investigation Process
 
@@ -305,14 +348,20 @@ source_type:dns-logs AND query_name:*.<suspicious-domain>
 ## 🎯 Quality Standards
 
 ### Classification Criteria
-- **MALICIOUS**: High confidence evidence of malicious activity
-- **SUSPICIOUS**: Concerning activity requiring further monitoring  
-- **BENIGN**: False positive with clear explanation
+- **MALICIOUS**: High confidence evidence supporting malicious hypothesis with corroborating sources
+- **SUSPICIOUS**: Evidence supports concerning activity but gaps remain, requires monitoring
+- **BENIGN**: High confidence evidence supporting legitimate hypothesis with clear explanation
 
 ### Confidence Levels
-- **High (80-100%)**: Multiple corroborating evidence sources
-- **Medium (60-79%)**: Some evidence but gaps remain
-- **Low (0-59%)**: Limited evidence, requires more investigation
+- **High (80-100%)**: Primary hypothesis strongly supported by multiple independent evidence sources
+- **Medium (60-79%)**: Primary hypothesis moderately supported, some evidence gaps or contradictions
+- **Low (0-59%)**: Insufficient evidence to confidently support any single hypothesis
+
+### Hypothesis Testing Requirements
+- **Generate 2-4 initial hypotheses** ranked by probability based on initial evidence
+- **Test systematically** - collect targeted evidence for each hypothesis
+- **Update continuously** - refine hypothesis rankings as evidence accumulates
+- **Document alternatives** - record all hypotheses considered and evidence that ruled them out
 
 ### Documentation Requirements
 - Every MCP tool call must be documented with **COMPLETE REPRODUCIBILITY INFORMATION**
